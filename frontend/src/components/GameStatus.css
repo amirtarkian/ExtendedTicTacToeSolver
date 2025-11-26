@@ -1,0 +1,58 @@
+.game-status {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.status-message {
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: all 0.3s;
+}
+
+.status-X {
+  background: #ffe0e0;
+  color: #c33;
+}
+
+.status-O {
+  background: #e0f0ff;
+  color: #369;
+}
+
+.status-winner {
+  background: #d4edda;
+  color: #155724;
+  font-size: 1.8em;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.status-draw {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.status-hint {
+  color: #666;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+.loading-spinner {
+  display: inline-block;
+  margin-right: 10px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+

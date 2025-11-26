@@ -1,0 +1,11 @@
+# Requirements for Extended Tic-Tac-Toe Solver
+
+# Backend API dependencies
+flask>=2.3.0
+flask-cors>=4.0.0
+tqdm>=4.66.0
+
+# ML dependencies for MPS acceleration
+numpy>=1.24.0
+torch>=2.0.0
+
