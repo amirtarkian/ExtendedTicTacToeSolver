@@ -1,7 +1,7 @@
 import React from 'react';
 import './GameBoard.css';
 
-function GameBoard({ gameState, onCellClick, loading }) {
+function GameBoard({ gameState, onCellClick, loading, lastMove }) {
   if (!gameState) {
     return <div className="game-board-loading">Loading board...</div>;
   }
@@ -61,11 +61,12 @@ function GameBoard({ gameState, onCellClick, loading }) {
       const player = boardPositions[key];
       const isLegal = legalMovesSet.has(key);
       const isEmpty = !player;
+      const isLastMove = lastMove && lastMove.row === row && lastMove.col === col;
 
       cells.push(
         <div
           key={key}
-          className={`cell ${isEmpty ? 'empty' : 'filled'} ${isLegal ? 'legal' : ''} ${loading ? 'disabled' : ''} ${player ? `player-${player.toLowerCase()}` : ''}`}
+          className={`cell ${isEmpty ? 'empty' : 'filled'} ${isLegal ? 'legal' : ''} ${loading ? 'disabled' : ''} ${player ? `player-${player.toLowerCase()}` : ''} ${isLastMove ? 'last-move' : ''}`}
           onClick={() => !loading && isLegal && isEmpty && onCellClick(row, col)}
           title={isLegal && isEmpty ? `Click to place ${gameState.current_player}` : ''}
           data-player={player}

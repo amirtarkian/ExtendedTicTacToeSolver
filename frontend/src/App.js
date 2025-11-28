@@ -15,6 +15,7 @@ function App() {
     depth: 4
   });
   const [minimaxProgress, setMinimaxProgress] = useState(null);
+  const [lastMove, setLastMove] = useState(null);
   const progressPollIntervalRef = useRef(null);
 
   useEffect(() => {
@@ -33,6 +34,7 @@ function App() {
     try {
       setLoading(true);
       setError(null);
+      setLastMove(null);
       const response = await createGame(minimaxParams);
       setGameId(response.game_id);
       setGameState(response.state);
@@ -83,6 +85,7 @@ function App() {
       setError(null);
       const response = await makeMove(gameId, row, col);
       setGameState(response.state);
+      setLastMove({ row, col });
 
       // If game continues and it's X's turn, let Minimax play
       if (!response.state.is_terminal && response.state.current_player === 'X') {
@@ -157,6 +160,11 @@ function App() {
       const response = await minimaxPlay(targetGameId);
       setGameState(response.state);
       
+      // Update last move if move is included in response
+      if (response.move) {
+        setLastMove({ row: response.move.row, col: response.move.col });
+      }
+      
       // Stop polling and clear progress
       if (progressPollIntervalRef.current) {
         clearInterval(progressPollIntervalRef.current);
@@ -219,6 +227,7 @@ function App() {
           gameState={gameState}
           onCellClick={handleCellClick}
           loading={loading}
+          lastMove={lastMove}
         />
 
         <GameControls

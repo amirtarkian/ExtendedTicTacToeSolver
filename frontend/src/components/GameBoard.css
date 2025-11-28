@@ -85,6 +85,27 @@
   color: #3498db;
 }
 
+.cell.last-move {
+  background: #fff9c4 !important;
+  animation: highlightPulse 0.6s ease-out;
+}
+
+.cell.last-move.filled {
+  background: #fff9c4 !important;
+}
+
+@keyframes highlightPulse {
+  0% {
+    background: rgba(255, 249, 196, 0.3);
+  }
+  50% {
+    background: rgba(255, 249, 196, 0.8);
+  }
+  100% {
+    background: #fff9c4;
+  }
+}
+
 .board-info {
   margin-top: 15px;
   text-align: center;
